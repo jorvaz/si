@@ -140,6 +140,18 @@
     -webkit-animation-duration: 1s;
     visibility: visible;
   }
+  pre{
+    text-align:left;
+    margin-bottom:0;
+  }
+  .row.flex-row{
+    display:flex;
+  }
+  video,pre{
+    height:100%;
+    width:100%;
+  }
+
   @keyframes slide {
     0% {
       opacity: 0;
@@ -168,6 +180,9 @@
     .btn-lg {
       width: 100%;
       margin-bottom: 35px;
+    }
+    .row.flex-row{
+      flex-wrap:wrap;
     }
   }
   @media screen and (max-width: 480px) {

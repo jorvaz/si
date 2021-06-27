@@ -56,6 +56,12 @@
           do 6º semestre da Licenciatura em Engenharia Informática
           da Universidade Autónoma de Lisboa.
         </p>
+        <p>O grupo responsável pelo trabalho é composto por:</p>
+        <ul>
+          <li>Jorge Vaz 30002521</li>
+          <li>Krystyna Shvets 30002527</li>
+          <li>Verónica Pernes 30002681</li>
+        </ul>
         <p>
           O docente Professor Doutor Laercio Cruvinel lançou o desafio de criarmos uma WebPage onde expuséssemos a
           Cinemática Direta, Cinemática Inversa e um exemplo de Trajetorias dos robots:
@@ -66,28 +72,32 @@
   </div>
 
   <div class="container-fluid bg-grey">
-    <div class="row">
+    <div class="row flex-row">
       <div class="col-sm-6">
+        <p class="text-center">IRB140 (com 6 graus de liberdade)</p>
         <img src="images/irb140.png" style="width:100%;" alt="ieb140" class="img-thumbnail">
       </div>
       <div class="col-sm-6">
+        <p class="text-center">TwoLink (com 2 graus de liberdade)</p>
         <img src="images/twolink.png" style="width:100%;" alt="twolink" class="img-thumbnail">
       </div>
     </div>
     <div class="row">
       <div class="col-sm-6">
-        <pre><code>
-  >> mdl_irb140;
->> irb140.plot(qz)
-
-</code></pre>
+        <pre>
+          <code>
+            >> mdl_irb140;
+            >> irb140.plot(qz)
+        </code>
+      </pre>
       </div>
       <div class="col-sm-6">
-        <pre><code>
-      >> mdl_twolink;
-      >> twolink.plot(qz)
-    
-    </code></pre>
+        <pre>
+          <code>
+            >> mdl_twolink;
+            >> twolink.plot(qz)  
+          </code>
+        </pre>
       </div>
     </div>
     <p>Para o desenvolvimento do projeto foi usado o MatLab e a Robotics Toolbox de <a
@@ -99,73 +109,74 @@
 
 
       <div class="row slideanim">
-        <h4 class="text-center mb-2">abb, irb140</h4>
-        <div class="row">
-          <div class="col-sm-6">
+        <h4 class="text-center mb-2">IRB140</h4>
+        <div class="row flex-row">
+          <div class="col-md-6">
             <video width="100%" controls>
-              <source src="mov_bbb.mp4" type="video/mp4">
-              <source src="mov_bbb.ogg" type="video/ogg">
+              <source src="videos/IRB140_Direta_J_.mp4" type="video/mp4">
               Your browser does not support HTML video.
             </video>
           </div>
-          <div class="col-sm-6">
+          <div class="col-md-6">
 
-            <pre> <code>
-clear; close;
-mdl_irb140
-%%Cinemática direta
-T0 = irb140.fkine(qz);
-T1 = irb140.fkine(qr);
-T2 = irb140.fkine(qd);
-  
-%%Plotagem
-tempo = 0:0.4:10;
-q = jtraj(qz, qr, tempo);
-irb140.plot(q)
-pause(1)
-q = jtraj(qr, qd, tempo);
-irb140.plot(q)
-pause(1)
-q = jtraj(qd, qz, tempo);
-irb140.plot(q)
-pause(1)
- 
-          </code></pre>
+            <pre>
+              <code>
+                clear; close;
+                mdl_irb140
 
+                %%Cinemática direta
+                T0 = irb140.fkine(qz);
+                T1 = irb140.fkine(qr);
+                T2 = irb140.fkine(qd);
+                  
+                %%Plotagem
+                tempo = 0:0.4:10;
+                q = jtraj(qz, qr, tempo);
+                irb140.plot(q)
+                pause(1)
+                q = jtraj(qr, qd, tempo);
+                irb140.plot(q)
+                pause(1)
+                q = jtraj(qd, qz, tempo);
+                irb140.plot(q)
+                pause(1)
+              </code>
+            </pre>
           </div>
         </div>
+        <br>
         <h4 class="text-center mb-2">TwoLink</h4>
-        <div class="row">
-          <div class="col-sm-6">
+        <div class="row flex-row">
+          <div class="col-md-6">
             <video width="100%" controls>
-              <source src="mov_bbb.mp4" type="video/mp4">
-              <source src="mov_bbb.ogg" type="video/ogg">
+              <source src="videos/2Link_Direta_J.mp4" type="video/mp4">
               Your browser does not support HTML video.
             </video>
           </div>
-          <div class="col-sm-6">
-            <pre><code>clear; close; clc
-            mdl_twolink
-            
-            %%Cinemática direta
-            T0 = twolink.fkine(qz);
-            T1 = twolink.fkine(qn);
-            
-            
-            %%Plotagem
-            tempo = 0:0.4:10;
-            q = jtraj(qz, qn, tempo);
-            twolink.plot(q)
-            pause(1)
-            q = jtraj(qn, qz, tempo);
-            twolink.plot(q)
-            pause(1)</code></pre>
+          <div class="col-md-6">
+            <pre>
+              <code>
+                clear; close; clc
+                mdl_twolink
+                
+                %%Cinemática direta
+                T0 = twolink.fkine(qz);
+                T1 = twolink.fkine(qn);
+                
+                
+                %%Plotagem
+                tempo = 0:0.4:10;
+                q = jtraj(qz, qn, tempo);
+                twolink.plot(q)
+                pause(1)
+                q = jtraj(qn, qz, tempo);
+                twolink.plot(q)
+                pause(1)
+              </code>
+            </pre>
           </div>
         </div>
-
-
       </div>
-
     </div>
   </div>
 
@@ -174,67 +185,71 @@ pause(1)
     <h2>Cinemática Inversa</h2><br>
 
     <div class="row text-center slideanim">
-      <h4 class="text-center mb-2">abb, irb140</h4>
-      <div class="row">
-        <div class="col-sm-6">
+      <h4 class="text-center mb-2">IRB140</h4>
+      <div class="row flex-row">
+        <div class="col-md-6">
           <video width="100%" controls>
-            <source src="mov_bbb.mp4" type="video/mp4">
-            <source src="mov_bbb.ogg" type="video/ogg">
+            <source src="videos/IRB140_Inversa_K.mp4" type="video/mp4">
             Your browser does not support HTML video.
           </video>
         </div>
-        <div class="col-sm-6">
+        <div class="col-md-6">
 
-          <pre> <code>
-            clear, close, clc
-            mdl_irb140
-            qd
-            
-            T =irb140.fkine(qd)
-            
-            qi= irb140.ikine(T,[0 0 0],'mask',[1 1 1 0 0 0]);
-            figure(1);
-            irb140.teach(qi)
-             pause(5)
-             figure(2);
-            Ta = irb140.fkine(qi)
-            Ta.print('xyz')
-             trplot(T, 'color', 'b')
-             hold on
-             trplot(Ta, 'color', 'r') %analisar se a pose difere
- 
-          </code></pre>
-
+          <pre>
+            <code>
+              clear, close, clc
+              mdl_irb140
+              qd
+              
+              T =irb140.fkine(qd)
+              
+              qi= irb140.ikine(T,[0 0 0],'mask',[1 1 1 0 0 0]);
+              figure(1);
+              irb140.teach(qi)
+              pause(5)
+              figure(2);
+              Ta = irb140.fkine(qi)
+              Ta.print('xyz')
+              trplot(T, 'color', 'b')
+              hold on
+              trplot(Ta, 'color', 'r') %analisar se a pose difere
+            </code>
+          </pre>
         </div>
       </div>
+      <br>
       <h4 class="text-center mb-2">TwoLink</h4>
-      <div class="row">
-        <div class="col-sm-6">
+      <div class="row flex-row">
+        <div class="col-md-6">
           <video width="100%" controls>
-            <source src="mov_bbb.mp4" type="video/mp4">
-            <source src="mov_bbb.ogg" type="video/ogg">
+            <source src="videos/2Link_Inversa_K.mp4" type="video/mp4">
             Your browser does not support HTML video.
           </video>
         </div>
-        <div class="col-sm-6">
-          <pre><code>clear; close; clc
-            mdl_twolink                     
-            
-            T =twolink.fkine(qn)
-            
-            q = twolink.ikine(T, [0 0], 'mask',[1 1 0 0 0 0])
-            figure(1);
-            twolink.teach(q) %plota o robot com o cotovelo para baixo
-            pause(2)
-            figure(2);
-             Ta = twolink.fkine(q);
-             Ta.print('xyz')
-             trplot(T, 'color', 'b')
-             hold on
-             trplot(Ta, 'color', 'r') %analisar se a pose difere</code></pre>
+        <div class="col-md-6">
+          <pre>
+            <code>
+              clear; close; clc
+              mdl_twolink                     
+              
+              T =twolink.fkine(qn)
+              
+              q = twolink.ikine(T, [0 0], 'mask',[1 1 0 0 0 0])
+              figure(1);
+              twolink.teach(q) %plota o robot com o cotovelo para baixo
+              pause(2)
+              figure(2);
+              Ta = twolink.fkine(q);
+              Ta.print('xyz')
+              trplot(T, 'color', 'b')
+              hold on
+              trplot(Ta, 'color', 'r') %analisar se a pose difere
+            </code>
+          </pre>
         </div>
 
-      </div><br>
+      </div>
+      <br>
 
 
       <!-- Container (Pricing Section) -->
@@ -244,115 +259,110 @@ pause(1)
 
         </div>
         <div class="row slideanim">
-          <h4 class="text-center">abb, irb140</h4>
-          <div class="row">
+          <h4 class="text-center">IRB140</h4>
+          <div class="row flex-row">
 
-            <div class="col-sm-6">
+            <div class="col-md-6">
               <video width="100%" controls>
-                <source src="mov_bbb.mp4" type="video/mp4">
-                <source src="mov_bbb.ogg" type="video/ogg">
+                <source src="videos/IRB140_traj_V.mp4" type="video/mp4">
                 Your browser does not support HTML video.
               </video>
             </div>
 
-            <div class="col-sm-6">
-              <pre><code>
-                      clear, close, clc
-          
-          mdl_irb140
-          %mover o end-effector entre duas poses cartesianas
-          T1 = SE3(0.4, 0.2, 0) * SE3.Rx(pi);
-          T2 = SE3(0.4, -0.2, 0) * SE3.Rx(pi/2); 
-          
-          % os vetores de coordenadas conjuntas associados a essas poses são
-          q1 = irb140.ikine6s(T1);
-          q2 = irb140.ikine6s(T2); 
-          %tempo para que a trajetoria ocorra
-          t = [0:0.05:2]';
-          
-          q = mtraj(@tpoly, q1, q2, t);
-          
-          q = jtraj(q1, q2, t);
-          
-          [q,qd,qdd] = jtraj(q1, q2, t); 
-          
-          q = irb140.jtraj(T1, T2, t);
-          figure(1);
-          irb140.plot(q) %animação da trajetoria
-          figure(2);
-          qplot(t, q); %traçar todos os ângulos de junta, em função do tempo
-                    </code></pre>
-            </div>
-
-            <h4 class="text-center">TwoLink</h4>
-            <div class="row">
-              <div class="col-sm-6">
-                <video width="100%" controls>
-                  <source src="mov_bbb.mp4" type="video/mp4">
-                  <source src="mov_bbb.ogg" type="video/ogg">
-                  Your browser does not support HTML video.
-                </video>
-              </div>
-              <div class="col-sm-6">
-                <pre><code>
-                        clear, close, clc
-            
-            mdl_irb140
-            %mover o end-effector entre duas poses cartesianas
-            T1 = SE3(0.4, 0.2, 0) * SE3.Rx(pi);
-            T2 = SE3(0.4, -0.2, 0) * SE3.Rx(pi/2); 
-            
-            % os vetores de coordenadas conjuntas associados a essas poses são
-            q1 = irb140.ikine6s(T1);
-            q2 = irb140.ikine6s(T2); 
-            %tempo para que a trajetoria ocorra
-            t = [0:0.05:2]';
-            
-            q = mtraj(@tpoly, q1, q2, t);
-            
-            q = jtraj(q1, q2, t);
-            
-            [q,qd,qdd] = jtraj(q1, q2, t); 
-            
-            q = irb140.jtraj(T1, T2, t);
-            figure(1);
-            irb140.plot(q) %animação da trajetoria
-            figure(2);
-            qplot(t, q); %traçar todos os ângulos de junta, em função do tempo
-                      </code></pre>
-              </div>
-
-
+            <div class="col-md-6">
+              <pre>
+                <code>
+                  clear, close, clc
+                  mdl_irb140
+                  %mover o end-effector entre duas poses cartesianas
+                  T1 = SE3(0.4, 0.2, 0) * SE3.Rx(pi);
+                  T2 = SE3(0.4, -0.2, 0) * SE3.Rx(pi/2); 
+                  
+                  % os vetores de coordenadas conjuntas associados a essas poses são
+                  q1 = irb140.ikine6s(T1);
+                  q2 = irb140.ikine6s(T2); 
+                  %tempo para que a trajetoria ocorra
+                  t = [0:0.05:2]';
+                  
+                  q = mtraj(@tpoly, q1, q2, t);
+                  
+                  q = jtraj(q1, q2, t);
+                  
+                  [q,qd,qdd] = jtraj(q1, q2, t); 
+                  
+                  q = irb140.jtraj(T1, T2, t);
+                  figure(1);
+                  irb140.plot(q) %animação da trajetoria
+                  figure(2);
+                  qplot(t, q); %traçar todos os ângulos de junta, em função do tempo
+                </code>
+              </pre>
             </div>
           </div>
-
-
+          <br>
+          <h4 class="text-center">TwoLink</h4>
+          <div class="row flex-row">
+            <div class="col-md-6">
+              <video width="100%" controls>
+                <source src="videos/2Link_traj_V.mp4" type="video/mp4">
+                Your browser does not support HTML video.
+              </video>
+            </div>
+            <div class="col-md-6">
+              <pre>
+                  <code>
+                    clear, close, clc
+                    mdl_irb140
+                    %mover o end-effector entre duas poses cartesianas
+                    T1 = SE3(0.4, 0.2, 0) * SE3.Rx(pi);
+                    T2 = SE3(0.4, -0.2, 0) * SE3.Rx(pi/2); 
+                    
+                    % os vetores de coordenadas conjuntas associados a essas poses são
+                    q1 = irb140.ikine6s(T1);
+                    q2 = irb140.ikine6s(T2); 
+                    %tempo para que a trajetoria ocorra
+                    t = [0:0.05:2]';
+                    
+                    q = mtraj(@tpoly, q1, q2, t);
+                    
+                    q = jtraj(q1, q2, t);
+                    
+                    [q,qd,qdd] = jtraj(q1, q2, t); 
+                    
+                    q = irb140.jtraj(T1, T2, t);
+                    figure(1);
+                    irb140.plot(q) %animação da trajetoria
+                    figure(2);
+                    qplot(t, q); %traçar todos os ângulos de junta, em função do tempo
+                  </code>
+                </pre>
+            </div>
+          </div>
         </div>
       </div>
+
 
       <!-- Container (Contact Section) -->
       <div id="gui" class="container-fluid bg-grey">
         <h2 class="text-center">GUI</h2>
-        <div class="row">
+        <div class="row flex-row">
           <div class="col-sm-6">
             <video width="100%" controls>
-              <source src="mov_bbb.mp4" type="video/mp4">
-              <source src="mov_bbb.ogg" type="video/ogg">
+              <source src="videos/IRB140_GUI_V.mp4" type="video/mp4">
               Your browser does not support HTML video.
             </video>
-            <h3>ibr140</h3>
-            <p>codigo<a href="/ibr140/irb140GUIfig.fig" download> download</a></p>
-            <p>codigo<a href="/ibr140/irb140GUIfig.m" download> download</a></p>
+            <h3>IRB140</h3>
+            <p>codigo <a href="/ibr140/irb140GUIfig.fig" download>download</a></p>
+            <p>codigo <a href="/ibr140/irb140GUIfig.m" download>download</a></p>
           </div>
           <div class="col-sm-6">
             <video width="100%" controls>
-              <source src="mov_bbb.mp4" type="video/mp4">
-              <source src="mov_bbb.ogg" type="video/ogg">
+              <source src="videos/2Link_GUI_V.mp4" type="video/mp4">
               Your browser does not support HTML video.
             </video>
             <h3>TwoLink</h3>
-            <p>Codigo<a href="/twolink/GUI_twolink.fig">download </a></p>
-            <p>Codigo<a href="/twolink/GUI_twolink.m"> download </a></p>
+            <p>codigo <a href="/twolink/GUI_twolink.fig">download </a></p>
+            <p>codigo <a href="/twolink/GUI_twolink.m"> download </a></p>
           </div>
         </div>
       </div>
