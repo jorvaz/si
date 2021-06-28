@@ -283,13 +283,7 @@
                   q2 = irb140.ikine6s(T2); 
                   %tempo para que a trajetoria ocorra
                   t = [0:0.05:2]';
-                  
-                  q = mtraj(@tpoly, q1, q2, t);
-                  
-                  q = jtraj(q1, q2, t);
-                  
-                  [q,qd,qdd] = jtraj(q1, q2, t); 
-                  
+                 
                   q = irb140.jtraj(T1, T2, t);
                   figure(1);
                   irb140.plot(q) %animação da trajetoria
@@ -311,29 +305,69 @@
             <div class="col-md-6">
               <pre>
                   <code>
-                    clear, close, clc
-                    mdl_irb140
-                    %mover o end-effector entre duas poses cartesianas
-                    T1 = SE3(0.4, 0.2, 0) * SE3.Rx(pi);
-                    T2 = SE3(0.4, -0.2, 0) * SE3.Rx(pi/2); 
-                    
-                    % os vetores de coordenadas conjuntas associados a essas poses são
-                    q1 = irb140.ikine6s(T1);
-                    q2 = irb140.ikine6s(T2); 
-                    %tempo para que a trajetoria ocorra
-                    t = [0:0.05:2]';
-                    
-                    q = mtraj(@tpoly, q1, q2, t);
-                    
-                    q = jtraj(q1, q2, t);
-                    
-                    [q,qd,qdd] = jtraj(q1, q2, t); 
-                    
-                    q = irb140.jtraj(T1, T2, t);
+                    clear; close; clc
+                    mdl_twolink
+                    qf = [pi/2 0]; 
+                    t = [0:.05:2];
+                    q = jtraj(qz, qf, t); % Trajetória das coordenadas das juntas
+
                     figure(1);
-                    irb140.plot(q) %animação da trajetoria
+
+                    twolink.plot(q); % Animação do robô r1 na trajetória q
                     figure(2);
-                    qplot(t, q); %traçar todos os ângulos de junta, em função do tempo
+                    subplot(2,1,1)
+                    plot(t,q(:,1)); % Gráfico da posição angular da junta 1 variando no tempo
+                    title('Theta');
+                    xlabel('Tempo (s)');
+                    ylabel('Junta 1 (rad)');
+
+                    subplot(2,1,2)
+                    plot(t,q(:,2)); % Gráfico da posição angular da junta 2 variando no tempo
+                    title('Theta');
+                    xlabel('Tempo (s)');
+                    ylabel('Junta 2 (rad)');
+
+                    [q, dq, ddq] = jtraj(qz, qf, t); % Posição angular, velocidade angular e aceleração angular
+
+                    figure(3);
+                    subplot(3,1,1)
+                    plot(t,q(:,1)); % Gráfico da posição angular
+                    title('Theta');
+                    xlabel('Tempo(s)');
+                    ylabel('Junta 1 (rad)');
+                    subplot(3,1,2)
+                    plot(t,dq(:,1)); % Gráfico da velocidade angular
+                    title('Velocidade')
+                    xlabel('Tempo (s)');
+                    ylabel('Junta 1 vel (rad/s)')
+                    subplot(3,1,3)
+                    plot(t,ddq(:,1)); % Gráfico da aceleração angular
+                    title('Aceleração')
+                    xlabel('Tempo (s)');
+                    ylabel('Junta 1 aceler (rad/s2)')
+
+                    q = jtraj(qz, qf, t); % Trajetória das coordenadas das juntas
+                    H = fkine(twolink,q); % Matriz transformação homogênea
+                    Hmat = H.double; % Converte SE3 para Matriz
+
+                    figure(4);
+                    subplot(3,1,1)
+                    s = 'Gráfico da coordenada x variando no tempo';
+                    plot(t,squeeze(Hmat(1,1,:)));
+                    xlabel('Tempo (s)'); ylabel('x (m)'); title(s);
+                    subplot(3,1,2)
+                    s = 'Gráfico da coordenada y variando no tempo';
+                    plot(t,squeeze(Hmat(2,1,:)));
+                    xlabel('Tempo (s)'); ylabel('y (m)'); title(s);
+                    subplot(3,1,3)
+                    s = 'Gráfico da coordenada z variando no tempo';
+                    plot(t,squeeze(Hmat(3,1,:)));
+                    xlabel('Tempo (s)'); ylabel('z (m)'); title(s);
+
+                    figure(5);
+                    s = 'Gráfico das coordenadas x e y';
+                    plot(squeeze(Hmat(1,1,:)),squeeze(Hmat(2,1,:)));
+                    xlabel('x (m)'); ylabel('y (m)'); title(s);
                   </code>
                 </pre>
             </div>
@@ -352,8 +386,8 @@
               Your browser does not support HTML video.
             </video>
             <h3>IRB140</h3>
-            <p>codigo <a href="https://github.com/jorvaz/si/blob/main/ibr140/irb140GUIfig.zip" >download</a></p>
-           
+            <p>codigo <a href="https://github.com/jorvaz/si/blob/main/ibr140/irb140GUIfig.zip">download</a></p>
+
           </div>
           <div class="col-sm-6">
             <video width="100%" controls>
@@ -361,8 +395,8 @@
               Your browser does not support HTML video.
             </video>
             <h3>TwoLink</h3>
-            <p>codigo <a href="https://github.com/jorvaz/si/blob/main/twolink/GUI_twolink.zip" >download </a></p>
-           
+            <p>codigo <a href="https://github.com/jorvaz/si/blob/main/twolink/GUI_twolink.zip">download </a></p>
+
           </div>
         </div>
       </div>
